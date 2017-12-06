@@ -1,21 +1,25 @@
 {
-  "name": "donate-css",
-  "description": "donate page for code for science &amp; society",
+  "name": "donate-freecodecamp",
+  "description": "donate page for freeCodeCamp.org",
   "version": "1.0.0",
-  "author": "Joe Hand <joe@hand.email>",
+  "author": "freeCodeCamp",
   "scripts": {
-    "dev": "node server.js & bankai build client/app.js public/ -w",
-    "build": "bankai build client/app.js public/",
-    "start": "node server.js"
+    "dev": "NODE_ENV=development node server & bankai build client/app.js public/ -w",
+    "build": "NODE_ENV=production bankai build client/app.js public/",
+    "start": "NODE_ENV=production node server",
+    "format-js": "prettier es5 --single-quote --write './**/*.js'",
+    "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
+    "format": "npm run format-js && npm run lint"
   },
   "keywords": [],
-  "license": "MIT",
-  "main": "index.js",
+  "license": "BSD 3-clause",
+  "main": "N/A",
   "dependencies": {
     "body-parser": "^1.17.2",
     "choo": "^6.0.0",
     "choo-log": "^6.1.2",
     "dat-colors": "^3.5.1",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "load-script2": "^1.0.0",
     "sheetify": "^6.1.1",
@@ -24,7 +28,10 @@
     "xhr": "^2.4.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.3",
     "bankai": "^8.1.1",
+    "eslint": "^4.12.1",
+    "prettier": "^1.9.1",
     "standard": "*"
   },
   "repository": {

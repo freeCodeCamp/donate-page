@@ -39,8 +39,8 @@
   --neutral-14:#E0E3E5;
   --neutral-10:#E9EBEC;
   --neutral-04:#F6F7F8;
-  --green:#2ACA4B;
-  --green-hover:#199E33;
+  --green:#006400;
+  --green-hover:#008600;
   --green-darker:#006607;
   --green-disabled:#94E4A5;
   --blue:#007FFF;
@@ -81,4 +81,49 @@ a {
   border-color: var(--green);
 }
 
+.bg--green {
+  background-color: var(--green);
+}
 
+.inv:hover {
+  color: var(--white);
+  background-color: var(--green-hover);
+}
+
+.inv:focus {
+  color: var(--white);
+  background-color: var(--green-hover);
+}
+
+.donate-button-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+.donate-button-list-wrapper .value {
+  display: flex;
+  justify-content: center;
+}
+
+.donate-button-list-wrapper > ul > li {
+  width: calc(25% - 4px);
+  margin: 0 2px;
+}
+
+.donate-button-list-wrapper > ul {
+  display: flex;
+  justify-content: center;
+}
+.donate-button-list-wrapper .full-width {
+  width: 100%;
+}
+
+.donate-button-list-wrapper button {
+  background-color: var(--white);
+  font-family: inherit;
+}
+
+.max-500 {
+  max-width: 500px;
+}
