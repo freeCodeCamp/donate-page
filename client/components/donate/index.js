@@ -27,8 +27,7 @@ function donateView(state, emit) {
       ${providerButtons(state, emit)}
       ${renderDonateButton(state, emit)}
       <p class="lh-copy f7 black-60 measure">
-        Donations are processed via Stripe (per transation: CC, 2.2% + $0.30;
-        Bitcoin, 0.8% cap at $5). We receive donation in USD minus fees.
+        We receive donation in USD minus fees.
       </p>
       ${donateProcessed ? donateResults(state) : ''}
       <h5
