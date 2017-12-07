@@ -5,11 +5,12 @@ var css = require('sheetify');
 var main = require('./components/main');
 
 const { loadStripeCheckout, stripeCheckout } = require('./checkouts/stripe');
-const { loadAmazonCheckout } = require('./checkouts/amazon');
+// const { loadAmazonCheckout, handleAmazonCheckout } = require('./checkouts/amazon');
 const { paypalButtonValues } = require('./checkouts/paypal');
 
 const handleCheckout = {
   /* no-op for paypal, handled via form */
+  // amazon: handleAmazonCheckout,
   paypal: () => {},
   stripe: stripeCheckout
 };
@@ -17,11 +18,10 @@ const handleCheckout = {
 css('tachyons');
 css('dat-colors');
 css('./app.css');
-// css('./style.css');
 
 var app = choo();
 app.use(log());
-app.use(loadAmazonCheckout);
+// app.use(loadAmazonCheckout);
 app.use(loadStripeCheckout);
 app.use(handleDonate);
 app.route('/', mainView);
@@ -31,7 +31,10 @@ app.mount('body');
 function mainView(state, emit) {
   return html`
     <body class="color-neutral">
+      <main>
       ${main(state, emit)}
+      </main>
+      <div id='modal'></div>
     </body>
   `;
 }
@@ -53,6 +56,7 @@ function handleDonate(state, emitter) {
   emitter.on('amount', function(value) {
     state.donation.amount = value;
     state.paypal.buttonValue = paypalButtonValues[value];
+    state.checkout.error = null;
     emitter.emit('render');
   });
   emitter.on('checkout-method', function(method) {
@@ -60,6 +64,11 @@ function handleDonate(state, emitter) {
     emitter.emit('render');
   });
   emitter.on('checkout', function() {
+    if (!state.donation.amount) {
+      state.checkout.error = 'Please select an amount to donate';
+      emitter.emit('render');
+      return;
+    }
     state.checkout = Object.assign(state.checkout, {
       amount: state.donation.amount,
       // force reset vals

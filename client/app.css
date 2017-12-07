@@ -132,7 +132,47 @@ a {
   max-width: 500px;
 }
 
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+}
+.payment-methods > li {
+  height: 97px;
+}
+.payment-methods button {
+  height: 90px;
+  font-size: 1.5rem;
+}
+.pay-button {
+  max-height: 50px;
+}
+.bitcoin-button {
+  display: flex;
+  justify-content: center;
+}
+
+#modal {
+  background: white;
+
+  position: fixed;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -25% 0 0 -25%;
+
+  /* Embiggen */
+  transform: scale(1.5); /* prefix me */
+
+  /* Hidden */
+  opacity: 0;
+  pointer-events: none;
+}
+
 #AmazonPayButton {
   display: flex;
   justify-content: center;
+}
+#addressBookWidgetDiv {
+  width: 400px;
+  height: 228px;
 }

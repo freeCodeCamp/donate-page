@@ -71,3 +71,12 @@ exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
     }
   });
 };
+
+exports.handleAmazonCheckout = function handleAmazonCheckout(state, emitter) {
+  const { amount, checkoutMethod } = state.donation;
+  if (!amount || !checkoutMethod || checkoutMethod !== 'amazon') {
+    return;
+  }
+  document.body.classList.add('dialogIsOpen');
+
+};

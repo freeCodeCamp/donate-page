@@ -12,7 +12,7 @@
     "format": "npm run format-js && npm run lint"
   },
   "keywords": [],
-  "license": "BSD 3-clause",
+  "license": "BSD-3-Clause",
   "main": "N/A",
   "dependencies": {
     "body-parser": "^1.17.2",
