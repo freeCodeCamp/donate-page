@@ -124,6 +124,10 @@ a {
   font-family: inherit;
 }
 
+.donate-button-list-wrapper .active {
+  background-color: var(--green-hover);
+  color: var(--white);
+}
 .max-500 {
   max-width: 500px;
 }

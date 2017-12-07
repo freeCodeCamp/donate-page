@@ -24,7 +24,7 @@ function donateView(state, emit) {
         >
         Choose how you would like to donate (tax-deductible)
       </h5>
-      ${providerButtons(emit)}
+      ${providerButtons(state, emit)}
       ${renderDonateButton(state, emit)}
       <p class="lh-copy f7 black-60 measure">
         Donations are processed via Stripe (per transation: CC, 2.2% + $0.30;
