@@ -1,4 +1,6 @@
 port: 8080
 stripe:
-  public: 'stripe_key'
-  secret: 'stripe_secret_key'
+  public: ''
+  secret: ''
+amazon:
+  merchant: ''

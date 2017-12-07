@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "freeCodeCamp",
   "scripts": {
-    "dev": "NODE_ENV=development node server & bankai build client/app.js public/ -w",
+    "dev": "NODE_ENV=development node server & bankai build client/app.js public/ -w -V",
     "build": "NODE_ENV=production bankai build client/app.js public/",
     "start": "NODE_ENV=production node server",
     "format-js": "prettier es5 --single-quote --write './**/*.js'",

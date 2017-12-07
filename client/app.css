@@ -131,3 +131,8 @@ a {
 .max-500 {
   max-width: 500px;
 }
+
+#AmazonPayButton {
+  display: flex;
+  justify-content: center;
+}

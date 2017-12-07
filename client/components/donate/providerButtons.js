@@ -13,6 +13,18 @@ module.exports = function providerButtons(state, emit) {
         <a
           href=""
           onclick=${() => {
+            emit('checkout-method', 'amazon');
+          }}
+          class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
+            'color-neutral-80 ba b--green value'}
+            ${isActive(state, 'amazon') ? 'active' : ''}">
+            Amazon
+        </a>
+      </li>
+      <li class="dib mr2 mb2">
+        <a
+          href=""
+          onclick=${() => {
             emit('checkout-method', 'paypal');
           }}
           class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +

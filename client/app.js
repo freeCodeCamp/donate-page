@@ -3,10 +3,9 @@ var choo = require('choo');
 var log = require('choo-log');
 var css = require('sheetify');
 var main = require('./components/main');
-const success = require('./components/success');
-const abandoned = require('./components/abandoned');
 
 const { loadStripeCheckout, stripeCheckout } = require('./checkouts/stripe');
+const { loadAmazonCheckout } = require('./checkouts/amazon');
 const { paypalButtonValues } = require('./checkouts/paypal');
 
 const handleCheckout = {
@@ -22,6 +21,7 @@ css('./app.css');
 
 var app = choo();
 app.use(log());
+app.use(loadAmazonCheckout);
 app.use(loadStripeCheckout);
 app.use(handleDonate);
 app.route('/', mainView);
@@ -40,6 +40,7 @@ function handleDonate(state, emitter) {
   state.checkout = {};
   state.donation = {};
   state.paypal = {};
+  state.amazon ={}
 
   emitter.on('toggleBitcoinView', function() {
     state.bitcoinView = !state.bitcoinView;
