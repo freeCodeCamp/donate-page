@@ -27,7 +27,7 @@ function donateView(state, emit) {
       ${providerButtons(state, emit)}
       ${renderDonateButton(state, emit)}
       <p class="lh-copy f7 black-60 measure">
-        We receive donation in USD minus fees.
+        We receive donations in USD minus fees.
       </p>
       ${donateProcessed ? donateResults(state) : ''}
       <h5
