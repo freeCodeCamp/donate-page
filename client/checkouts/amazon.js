@@ -40,10 +40,9 @@ exports.loadAmazonCheckout = function loadAmazonCheckout(state, emitter) {
 exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
   if (!state.amazonLoaded) {
     // wait for the amazon script to load
-    emitter.once('amazonLoaded', function() {
-      emitter.emit('checkout');
-    });
-    return;
+    return setTimeout(() => {
+      renderAmazonButton(state, emitter);
+    }, 0);
   }
   if (!document.getElementById('AmazonPayButton')) {
     // the amazon button div is not rendered yet
@@ -57,7 +56,7 @@ exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
   let authRequest;
   OffAmazonPayments.Button('AmazonPayButton', state.amazonKey, {
     type: 'PwA',
-    color: 'DarkGray',
+    color: 'LightGray',
     authorization: function() {
       const loginOptions = {
         scope: 'payments:widget',
@@ -70,6 +69,7 @@ exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
       state.amazon.login.fail = true;
     }
   });
+  return null;
 };
 
 exports.handleAmazonCheckout = function handleAmazonCheckout(state, emitter) {

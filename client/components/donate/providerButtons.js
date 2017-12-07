@@ -1,23 +1,23 @@
 const html = require('choo/html');
-
-/* Amazon Pay button
-<li class="dib mr2 mb2">
-  <a
-    href=""
-    onclick=${() => {
-      emit('checkout-method', 'amazon');
-    }}
-    class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
-      'color-neutral-80 ba b--green value'}
-      ${isActive(state, 'amazon') ? 'active' : ''}">
-      Amazon
-  </a>
-</li> */
+const { renderAmazonButton } = require('../../checkouts/amazon');
 
 module.exports = function providerButtons(state, emit) {
+  renderAmazonButton(state, emit);
   return html`
   <div class="donate-button-list-wrapper">
     <ul class="list pl0 mb0 payment-methods">
+      <li class="dib mr2 mb2 full-width">
+        <button
+          onclick=${() => {
+            emit('checkout-method', 'amazon');
+            emit('checkout');
+            return;
+          }}
+          class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
+            'color-neutral-80 ba b--green full-width'}">
+            <div id='AmazonPayButton'></div>
+        </button>
+      </li>
       <li class="dib mr2 mb2 full-width">
       <form
       action="//www.paypal.com/cgi-bin/webscr"
