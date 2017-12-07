@@ -9,10 +9,8 @@ module.exports = function donateBitcoin() {
           <a
             class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
               'color-neutral-80 ba b--green'}"'
-            href="${
-              'https://twitter.com/freeCodeCamp/status/' +
-              '904506721405730816'
-            }"
+            href="${'https://twitter.com/freeCodeCamp/status/' +
+              '904506721405730816'}"
             target="_blank"
             >
             Crypto Currency Wallets

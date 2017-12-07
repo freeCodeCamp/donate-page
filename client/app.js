@@ -5,7 +5,10 @@ var css = require('sheetify');
 var main = require('./components/main');
 
 const { loadStripeCheckout, stripeCheckout } = require('./checkouts/stripe');
-const { loadAmazonCheckout, handleAmazonCheckout } = require('./checkouts/amazon');
+const {
+  loadAmazonCheckout,
+  handleAmazonCheckout
+} = require('./checkouts/amazon');
 const { paypalButtonValues } = require('./checkouts/paypal');
 
 const handleCheckout = {

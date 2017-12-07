@@ -78,5 +78,4 @@ exports.handleAmazonCheckout = function handleAmazonCheckout(state, emitter) {
     return;
   }
   document.body.classList.add('dialogIsOpen');
-
 };

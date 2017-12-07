@@ -48,7 +48,7 @@ module.exports = function providerButtons(state, emit) {
         class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
           'color-neutral-80 ba b--green full-width'}"
         name="submit"
-        onclick=${(e) => {
+        onclick=${e => {
           if (!state.donation.amount) {
             e.preventDefault();
           }
