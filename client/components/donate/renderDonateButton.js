@@ -1,6 +1,6 @@
 const html = require('choo/html');
 
-const {renderAmazonButton} =require('../../checkouts/amazon');
+const { renderAmazonButton } = require('../../checkouts/amazon');
 
 module.exports = function renderDonateButton(state, emit) {
   if (!state.donation.checkoutMethod || !state.donation.amount) {
@@ -54,7 +54,7 @@ module.exports = function renderDonateButton(state, emit) {
           />
           <button
             class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
-            'color-neutral-80 ba b--green full-width'}"
+              'color-neutral-80 ba b--green full-width'}"
             name="submit"
             onclick=${() => {
               emit('checkout');

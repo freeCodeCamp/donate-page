@@ -9,7 +9,7 @@ const { loadAmazonCheckout } = require('./checkouts/amazon');
 const { paypalButtonValues } = require('./checkouts/paypal');
 
 const handleCheckout = {
-   /* no-op for paypal, handled via form */
+  /* no-op for paypal, handled via form */
   paypal: () => {},
   stripe: stripeCheckout
 };
@@ -40,7 +40,7 @@ function handleDonate(state, emitter) {
   state.checkout = {};
   state.donation = {};
   state.paypal = {};
-  state.amazon ={}
+  state.amazon = {};
 
   emitter.on('toggleBitcoinView', function() {
     state.bitcoinView = !state.bitcoinView;

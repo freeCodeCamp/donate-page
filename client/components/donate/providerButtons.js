@@ -1,6 +1,5 @@
 const html = require('choo/html');
 
-
 function isActive(state, id) {
   return state.donation.checkoutMethod === id;
 }

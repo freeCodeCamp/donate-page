@@ -1,60 +1,73 @@
+/* global amazon, OffAmazonPayments */
 const xhr = require('xhr');
 const load = require('load-script2');
 
 exports.loadAmazonCheckout = function loadAmazonCheckout(state, emitter) {
-  load('https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js', function(err) {
-    if (err) {
-      return emitter.emit('log:error', err);
-    }
-
-    return xhr(
-      {
-        uri: '/amazon-key',
-        json: true
-      },
-      function(err, resp, body) {
-        emitter.emit('log:debug', body);
-        if (err || resp.statusCode !== 200) {
-          return emitter.emit('log:error', 'Error loading stripe');
-        }
-
-        state.amazonKey = body.key;
-        state.amazonLoaded = true;
-        emitter.emit('amazonLoaded');
-        emitter.emit('log:info', 'loaded amazon checkout.js');
-        return null;
+  load(
+    'https://static-na.payments-amazon.com/OffAmazonPayments/us/' +
+      'sandbox/js/Widgets.js',
+    function(err) {
+      if (err) {
+        return emitter.emit('log:error', err);
       }
-    );
-  });
-}
+
+      return xhr(
+        {
+          uri: '/amazon-key',
+          json: true
+        },
+        function(err, resp, body) {
+          emitter.emit('log:debug', body);
+          if (err || resp.statusCode !== 200) {
+            return emitter.emit('log:error', 'Error loading stripe');
+          }
+
+          state.amazonKey = body.key;
+          state.amazonLoaded = true;
+
+          window.onAmazonLoginReady = function() {
+            amazon.Login.setClientId(state.amazonKey);
+          };
+          emitter.emit('amazonLoaded');
+          emitter.emit('log:info', 'loaded amazon checkout.js');
+          return null;
+        }
+      );
+    }
+  );
+};
 
 exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
   if (!state.amazonLoaded) {
+    // wait for the amazon script to load
     emitter.once('amazonLoaded', function() {
       emitter.emit('checkout');
     });
     return;
   }
   if (!document.getElementById('AmazonPayButton')) {
-    return setTimeout(() => { renderAmazonButton(state, emitter); }, 0);
-  }
-  window.onAmazonLoginReady = function() {
-    amazon.Login.setClientId(state.amazonKey);
+    // the amazon button div is not rendered yet
+    // push this function back on to the call stack
+    // this will give the div a chance to render before
+    // this function is run again
+    return setTimeout(() => {
+      renderAmazonButton(state, emitter);
+    }, 0);
   }
   let authRequest;
-  OffAmazonPayments.Button("AmazonPayButton", state.amazonKey, {
-    type:  "PwA",
-    color: "DarkGray",
+  OffAmazonPayments.Button('AmazonPayButton', state.amazonKey, {
+    type: 'PwA',
+    color: 'DarkGray',
     authorization: function() {
       const loginOptions = {
-        scope: "payments:widget",
+        scope: 'payments:widget',
         popup: true
       };
       authRequest = amazon.Login.authorize(loginOptions);
     },
     onError: function(error) {
-      emmitter.emit('log:info', error);
+      emitter.emit('log:info', error);
       state.amazon.login.fail = true;
     }
   });
-}
+};
