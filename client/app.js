@@ -25,8 +25,6 @@ app.use(log());
 app.use(loadStripeCheckout);
 app.use(handleDonate);
 app.route('/', mainView);
-app.route('/donation-successful', successView);
-app.route('/donation-abandoned', abandonedView);
 app.route('/*', mainView);
 app.mount('body');
 
@@ -35,22 +33,6 @@ function mainView(state, emit) {
     <body class="color-neutral">
       ${main(state, emit)}
     </body>
-  `;
-}
-
-function successView() {
-  return html`
-  <body class='top-and-bottom-margins'>
-    ${success()}
-  </body>
-  `;
-}
-
-function abandonedView() {
-  return html`
-  <body class='top-and-bottom-margins'>
-    ${abandoned()}
-  </body>
   `;
 }
 
