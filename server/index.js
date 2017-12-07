@@ -20,10 +20,6 @@ app.get('/stripe-key', (req, res) => {
   res.json({ key: keys.stripe.public });
 });
 
-app.get('/paypal-key', (req, res) => {
-  res.json({ key: keys.paypal.public });
-});
-
 app.post('/charge-stripe', handleStripe);
 
 app.listen(port, () => {
