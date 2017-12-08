@@ -9,7 +9,7 @@ exports.loadStripeCheckout = function loadStripeCheckout(state, emitter) {
 
     return xhr(
       {
-        uri: '/stripe-key',
+        uri: '/api/stripe-key',
         json: true
       },
       function(err, resp, body) {

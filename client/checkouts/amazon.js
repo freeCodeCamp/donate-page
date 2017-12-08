@@ -13,7 +13,7 @@ exports.loadAmazonCheckout = function loadAmazonCheckout(state, emitter) {
 
       return xhr(
         {
-          uri: '/amazon-key',
+          uri: '/api/amazon-key',
           json: true
         },
         function(err, resp, body) {
