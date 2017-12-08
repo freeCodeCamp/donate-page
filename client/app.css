@@ -173,7 +173,7 @@ article > header {
 }
 .bitcoin-button {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 #modal {

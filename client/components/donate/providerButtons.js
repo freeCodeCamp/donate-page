@@ -39,6 +39,19 @@ module.exports = function providerButtons(state, emit) {
   <div class="donate-button-list-wrapper">
     <ul class="list pl0 mb0 payment-methods">
       <li class="dib mr2 mb2 full-width">
+        <button
+          onclick=${() => {
+            emit('checkout-method', 'stripe');
+            emit('checkout');
+            return;
+          }}
+          class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
+            'color-neutral-80 ba b--green full-width'}"
+            >
+            Credit or Debit Card
+        </button>
+      </li>
+      <li class="dib mr2 mb2 full-width">
       <form
       action="//www.paypal.com/cgi-bin/webscr"
       method="post"
@@ -85,19 +98,6 @@ module.exports = function providerButtons(state, emit) {
         />
       </button>
     </form>>
-      </li>
-      <li class="dib mr2 mb2 full-width">
-        <button
-          onclick=${() => {
-            emit('checkout-method', 'stripe');
-            emit('checkout');
-            return;
-          }}
-          class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
-            'color-neutral-80 ba b--green full-width'}"
-            >
-            Credit or Debit Card
-        </button>
       </li>
     </ul>
   </div>

@@ -13,7 +13,7 @@ module.exports = function donateBitcoin() {
               '904506721405730816'}"
             target="_blank"
             >
-            Crypto Currency Wallets
+            See our cryptocurrency wallet info
           </a>
         </li>
       </ul>

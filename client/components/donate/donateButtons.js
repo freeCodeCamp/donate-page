@@ -43,7 +43,7 @@ module.exports = function donateButtons(state, emit) {
         }}
         class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
           'color-neutral-80 ba b--green value'}
-          ${isActive(state, 3500) ? 'active' : ''}">
+          ${isActive(state, 3500) ? 'active' : 'active'}">
           $35
       </a>
     </li>

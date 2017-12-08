@@ -21,50 +21,26 @@ function donateView(state, emit) {
         </div>
       </header>
       <div class="fn fl-ns w-50-l">
-        <p class="lh-copy measure f5 mt4 mt0-ns ">
-          <strong>Code for Science & Society</strong>
-          (CSS), a registered US 501(c)(3), supports and builds open source
-          projects with a focus on science, government, and journalism. Our
-          primary initiative is the
-          <a
-            class="link dim"
-            href="http://datproject.org"
-            >
-              Dat Project
-          </a>
-          . We also host other open source science programs such as
-          <a
-            class="link dim"
-            href="http://sciencefair-app.com/"
-            >
-              Science Fair
-          </a>
-          and
-          <a
-            class="link dim"
-            href="http://stenci.la"
-            >
-              Stencila
-          </a>.
-        </p>
-        <p class="lh-copy measure f5">
-          <strong>Why Donate?</strong>
-          Primary funding for CSS comes through grants. Donations and
-          community support help us get grants in the future. Even small
-          donations are great!
-        </p>
-        <p class="lh-copy measure f5  ">
-          <strong>What is my money spent on?</strong>
-          100% of your money directly supports folks producing open source
-          software and building our community. Our employee headcount and
-          salaries depend on our active grants. We have very little overhead
-          and all earn the same amount of money. If you want your money to go
-          to a specific project, please let us know! We love to hear what you
-          are interested in.
-        </p>
         <div class="pt1 mt2">
           ${donate(state, emit)}
         </div>
+        <p class="lh-copy measure f5 mt4 mt0-ns ">
+          <strong>freeCodeCamp.org</strong>
+          freeCodeCamp is a donor-supported nonprofit. We help millions of
+          people learn to code and get their first developer job. We have
+          a thriving community around the world of people who are helping
+          each other learn new technologies and advance their careers.
+        </p>
+        <p class="lh-copy measure f5">
+          <strong>Why Donate?</strong>
+          100% of freeCodeCamp's funding comings from donors like you. Even 
+          a small monthly donation will help us cover the cost of servers and
+          other expenses. Help us expand our learning resources and support 
+          our community.
+        </p>
+        <p class="lh-copy measure f5  ">
+          <strong>Where your donation goes</strong>
+        </p>
       </div>
   </article>
   `;
