@@ -58,7 +58,7 @@ exports.stripeCheckout = function stripeCheckout(state, emitter) {
       state.checkout.chargePending = true;
       xhr(
         {
-          uri: '/charge-stripe',
+          uri: '/api/charge-stripe',
           method: 'POST',
           body: { token: token, amount: state.checkout.amount },
           json: true,
