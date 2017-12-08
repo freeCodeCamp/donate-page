@@ -45,9 +45,9 @@ exports.stripeCheckout = function stripeCheckout(state, emitter) {
     description: `$${state.checkout.amount / 100} Donation to freeCodeCamp.org`,
     image: 'images/fcc_puck600.png',
     panelLabel: 'Donate',
-    bitcoin: true,
+    bitcoin: false,
     amount: state.checkout.amount,
-    billingAddress: true,
+    billingAddress: false,
     closed: function() {
       if (!state.checkout.chargePending) {
         state.checkout.pending = false;

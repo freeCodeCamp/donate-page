@@ -167,6 +167,7 @@ article > header {
 .payment-methods button {
   height: 80px;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .pay-button {
   max-height: 50px;

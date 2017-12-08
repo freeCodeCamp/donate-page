@@ -24,7 +24,8 @@ function donateView(state, emit) {
         How to donate:
       </h5>
       ${providerButtons(state, emit)}
-      <p class="lh-copy f7 black-60 measure">
+      <br>
+      <p class="lh-copy measure f5 mt4 mt0-ns">
         We receive donations in USD minus fees.
       </p>
       ${donateProcessed ? donateResults(state) : ''}

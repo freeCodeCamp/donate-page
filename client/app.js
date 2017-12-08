@@ -51,6 +51,10 @@ function handleDonate(state, emitter) {
   state.donation = {};
   state.paypal = {};
   state.amazon = {};
+  emitter.on('DOMContentLoaded', function() {
+    // select $35 on page load
+    emitter.emit('amount', 3500);
+  });
 
   emitter.on('toggleBitcoinView', function() {
     state.bitcoinView = !state.bitcoinView;
