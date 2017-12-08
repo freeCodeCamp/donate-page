@@ -5,15 +5,15 @@ var css = require('sheetify');
 var main = require('./components/main');
 const amazonModal = require('./components/donate/amazonModal');
 const { loadStripeCheckout, stripeCheckout } = require('./checkouts/stripe');
-const {
-  loadAmazonCheckout,
-  handleAmazonCheckout,
-  renderAmazonElements
-} = require('./checkouts/amazon');
+// const {
+//   loadAmazonCheckout,
+//   handleAmazonCheckout,
+//   renderAmazonElements
+// } = require('./checkouts/amazon');
 const { paypalButtonValues } = require('./checkouts/paypal');
 
 const handleCheckout = {
-  amazon: handleAmazonCheckout,
+  // amazon: handleAmazonCheckout,
   /* no-op for paypal, handled via form */
   paypal: () => {},
   stripe: stripeCheckout
@@ -25,9 +25,9 @@ css('./app.css');
 
 var app = choo();
 app.use(log());
-app.use(loadAmazonCheckout);
+// app.use(loadAmazonCheckout);
 app.use(loadStripeCheckout);
-app.use(renderAmazonElements);
+// app.use(renderAmazonElements);
 app.use(handleDonate);
 app.route('/', mainView);
 app.route('/*', mainView);

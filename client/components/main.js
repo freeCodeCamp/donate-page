@@ -4,13 +4,13 @@ const fccLogo = require('./fccLogo');
 
 function donateView(state, emit) {
   return html`
-    <article class="cf ph3 ph5-ns pv4 color-neutral relative">
+  <article class="cf ph3 ph5-ns pv4 color-neutral relative">
       <header class="fn fl-ns w-50-l pr4-ns">
         <h1 class="f3 mb3 mt0 lh-title">${fccLogo()}</h1>
         <h2 class="f5 ttu tracked color-neutral-70">
           Learn to code and help non-profits
         </h2>
-        <div class="w-100 flex pv5-ns">
+        <div id="feature-logo-wrap" class="w-100 h-100 flex pv5-ns">
           <a href="https://freecodecamp.org" title="freeCodeCamp.org">
           <img
             alt="freecodeCamp.org"
@@ -49,9 +49,9 @@ function donateView(state, emit) {
         </p>
         <p class="lh-copy measure f5">
           <strong>Why Donate?</strong>
-          Primary funding for CSS comes through grants. Donations and community
-          support help us get grants in the future. Even small donations are
-          great!
+          Primary funding for CSS comes through grants. Donations and
+          community support help us get grants in the future. Even small
+          donations are great!
         </p>
         <p class="lh-copy measure f5  ">
           <strong>What is my money spent on?</strong>
@@ -66,16 +66,7 @@ function donateView(state, emit) {
           ${donate(state, emit)}
         </div>
       </div>
-      <footer class="w-100-m absolute-l fl-ns fn db-l bottom-2-l">
-        <p class="lh-copy f7 color-neutral-60">
-          Code for Science and Society is a registered US 501(c)(3) nonprofit.
-          <br>
-          Donations are tax deductible to the extent allowed by law in US.
-          <br>
-          Tax ID 81-3791683
-        </p>
-      </footer>
-    </article>
+  </article>
   `;
 }
 

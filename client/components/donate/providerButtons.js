@@ -1,7 +1,9 @@
 const html = require('choo/html');
-const raw = require('choo/html/raw');
+// const raw = require('choo/html/raw');
 
 module.exports = function providerButtons(state, emit) {
+  // Amazon Pay specific stuff commented out for release
+
   // capture amazon pay button html if it is rendered, we should
   // reuse this html instead of asking the amazon script to
   // render it again. That causes the button todisappear/reappear
@@ -12,28 +14,30 @@ module.exports = function providerButtons(state, emit) {
   * TODO:(@Bouncey) find a less fragile way of keeping the amazon pay
   * button on screen
   */
-  if (!state.amazonButton) {
-    state.amazonButton =
-      document.getElementById('OffAmazonPaymentsWidgets0') &&
-      document.getElementById('OffAmazonPaymentsWidgets0').outerHTML;
-  }
+  // if (!state.amazonButton) {
+  //   state.amazonButton =
+  //     document.getElementById('OffAmazonPaymentsWidgets0') &&
+  //     document.getElementById('OffAmazonPaymentsWidgets0').outerHTML;
+  // }
+  //   <li class="dib mr2 mb2 full-width">
+  //   <button
+  //     onclick=${() => {
+  //       emit('checkout-method', 'amazon');
+  //       emit('checkout');
+  //       return;
+  //     }}
+  //     class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
+  //       'color-neutral-80 ba b--green full-width'}">
+  //       <div id='AmazonPayButton'>
+  //       ${state.amazonButton ? raw(state.amazonButton) : ''}
+  //       </div>
+  //   </button>
+  // </li>
+
+
   return html`
   <div class="donate-button-list-wrapper">
     <ul class="list pl0 mb0 payment-methods">
-      <li class="dib mr2 mb2 full-width">
-        <button
-          onclick=${() => {
-            emit('checkout-method', 'amazon');
-            emit('checkout');
-            return;
-          }}
-          class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
-            'color-neutral-80 ba b--green full-width'}">
-            <div id='AmazonPayButton'>
-            ${state.amazonButton ? raw(state.amazonButton) : ''}
-            </div>
-        </button>
-      </li>
       <li class="dib mr2 mb2 full-width">
       <form
       action="//www.paypal.com/cgi-bin/webscr"

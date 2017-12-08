@@ -95,6 +95,31 @@ a {
   background-color: var(--green-hover);
 }
 
+article > header {
+  height: calc(100vh - 200px);
+}
+
+#feature-logo-wrap {
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 959px) {
+  article > header {
+    height: 400px;
+  }
+
+  #feature-logo-wrap {
+    max-height: 300px;
+  }
+}
+@media screen and (max-width: 30em) {
+  #feature-logo-wrap {
+    display: none;
+  }
+  article > header {
+    height: auto;
+  }
+}
 .donate-button-list-wrapper {
   display: flex;
   flex-direction: column;
@@ -137,10 +162,10 @@ a {
   flex-direction: column;
 }
 .payment-methods > li {
-  height: 97px;
+  height: 87px;
 }
 .payment-methods button {
-  height: 90px;
+  height: 80px;
   font-size: 1.5rem;
 }
 .pay-button {
