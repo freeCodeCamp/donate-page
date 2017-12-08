@@ -4,11 +4,7 @@ const config = require('../lib/config');
 const keys = require('./keys');
 const handleStripe = require('./paymentHandlers/stripe');
 
-const port = config.port || process.env.PORT;
-
-if (!keys.stripe.secret || !keys.stripe.public) {
-  throw new Error('Stripe keys required');
-}
+const port = config.port || 8080;
 
 const app = express();
 
@@ -20,8 +16,8 @@ app.get('/stripe-key', (req, res) => {
   res.json({ key: keys.stripe.public });
 });
 
-app.get('/paypal-key', (req, res) => {
-  res.json({ key: keys.paypal.public });
+app.get('/amazon-key', (req, res) => {
+  res.json({ key: keys.amazon.merchant });
 });
 
 app.post('/charge-stripe', handleStripe);
