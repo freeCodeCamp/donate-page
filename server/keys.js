@@ -6,7 +6,9 @@ const keys = {
     public: config.stripe && config.stripe.public
   },
   amazon: {
-    merchant: config.amazon && config.amazon.merchant
+    merchant: config.amazon && config.amazon.merchant,
+    client: config.amazon && config.amazon.client,
+    secret: config.amazon && config.amazon.secret
   }
 };
 
