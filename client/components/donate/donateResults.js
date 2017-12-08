@@ -12,7 +12,7 @@ module.exports = function donateResults(state) {
   if (state.checkout.success) {
     bgClass = 'bg-light-green';
     msg = `
-      You donated $${state.checkout.amount / 100} to freeCodeCamp.
+      You are now donating $${state.checkout.amount / 100} monthly to freeCodeCamp.
       Thank you!
     `;
   }
