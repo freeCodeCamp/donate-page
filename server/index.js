@@ -23,5 +23,5 @@ app.get('/amazon-key', (req, res) => {
 app.post('/charge-stripe', handleStripe);
 
 app.listen(port, () => {
-  console.log(`app started on http://127.0.0.1:${port}`);
+  console.log(`donate-api started on :${port}`);
 });
