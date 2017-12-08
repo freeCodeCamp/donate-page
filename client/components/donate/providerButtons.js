@@ -1,8 +1,22 @@
 const html = require('choo/html');
-const { renderAmazonButton } = require('../../checkouts/amazon');
+const raw = require('choo/html/raw');
 
 module.exports = function providerButtons(state, emit) {
-  renderAmazonButton(state, emit);
+  // capture amazon pay button html if it is rendered, we should
+  // reuse this html instead of asking the amazon script to
+  // render it again. That causes the button todisappear/reappear
+  // on each render
+  // this will likely break when amazon changes is checkout.js
+
+  /*
+  * TODO:(@Bouncey) find a less fragile way of keeping the amazon pay
+  * button on screen
+  */
+  if (!state.amazonButton) {
+    state.amazonButton =
+      document.getElementById('OffAmazonPaymentsWidgets0') &&
+      document.getElementById('OffAmazonPaymentsWidgets0').outerHTML;
+  }
   return html`
   <div class="donate-button-list-wrapper">
     <ul class="list pl0 mb0 payment-methods">
@@ -15,7 +29,9 @@ module.exports = function providerButtons(state, emit) {
           }}
           class="${'mt2 f6 f4-ns tc b dib pv3 ph3 link inv ' +
             'color-neutral-80 ba b--green full-width'}">
-            <div id='AmazonPayButton'></div>
+            <div id='AmazonPayButton'>
+            ${state.amazonButton ? raw(state.amazonButton) : ''}
+            </div>
         </button>
       </li>
       <li class="dib mr2 mb2 full-width">

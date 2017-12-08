@@ -3,17 +3,18 @@ var choo = require('choo');
 var log = require('choo-log');
 var css = require('sheetify');
 var main = require('./components/main');
-
+const amazonModal = require('./components/donate/amazonModal');
 const { loadStripeCheckout, stripeCheckout } = require('./checkouts/stripe');
 const {
   loadAmazonCheckout,
-  handleAmazonCheckout
+  handleAmazonCheckout,
+  renderAmazonElements
 } = require('./checkouts/amazon');
 const { paypalButtonValues } = require('./checkouts/paypal');
 
 const handleCheckout = {
-  /* no-op for paypal, handled via form */
   amazon: handleAmazonCheckout,
+  /* no-op for paypal, handled via form */
   paypal: () => {},
   stripe: stripeCheckout
 };
@@ -26,6 +27,7 @@ var app = choo();
 app.use(log());
 app.use(loadAmazonCheckout);
 app.use(loadStripeCheckout);
+app.use(renderAmazonElements);
 app.use(handleDonate);
 app.route('/', mainView);
 app.route('/*', mainView);
@@ -34,10 +36,12 @@ app.mount('body');
 function mainView(state, emit) {
   return html`
     <body class="color-neutral">
-      <main>
+      <main id="page-wrap">
       ${main(state, emit)}
       </main>
-      <div id='modal'></div>
+      <div id='modal'>
+        ${amazonModal(state, emit)}
+      </div>
     </body>
   `;
 }
@@ -52,10 +56,6 @@ function handleDonate(state, emitter) {
     state.bitcoinView = !state.bitcoinView;
     emitter.emit('render');
   });
-  emitter.on('toggleValInput', function() {
-    state.showValInput = !state.showValInput;
-    emitter.emit('render');
-  });
   emitter.on('amount', function(value) {
     state.donation.amount = value;
     state.paypal.buttonValue = paypalButtonValues[value];
@@ -64,7 +64,6 @@ function handleDonate(state, emitter) {
   });
   emitter.on('checkout-method', function(method) {
     state.donation.checkoutMethod = method;
-    emitter.emit('render');
   });
   emitter.on('checkout', function() {
     if (!state.donation.amount) {

@@ -37,20 +37,23 @@ exports.loadAmazonCheckout = function loadAmazonCheckout(state, emitter) {
   );
 };
 
-exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
+exports.renderAmazonElements = function renderAmazonElements(state, emitter) {
   if (!state.amazonLoaded) {
     // wait for the amazon script to load
     return setTimeout(() => {
-      renderAmazonButton(state, emitter);
+      renderAmazonElements(state, emitter);
     }, 0);
   }
-  if (!document.getElementById('AmazonPayButton')) {
-    // the amazon button div is not rendered yet
+  if (
+    !document.getElementById('AmazonPayButton') ||
+    !document.getElementById('walletWidgetDiv')
+  ) {
+    // amazon elements div(s) are not rendered yet
     // push this function back on to the call stack
-    // this will give the div a chance to render before
+    // this will give the div(s) a chance to render before
     // this function is run again
     return setTimeout(() => {
-      renderAmazonButton(state, emitter);
+      renderAmazonElements(state, emitter);
     }, 0);
   }
   let authRequest;
@@ -63,12 +66,35 @@ exports.renderAmazonButton = function renderAmazonButton(state, emitter) {
         popup: true
       };
       authRequest = amazon.Login.authorize(loginOptions);
+      emitter.emit('log:info', authRequest);
     },
     onError: function(error) {
-      emitter.emit('log:info', error);
+      emitter.emit(
+        'log:info',
+        `Amazon Error ${JSON.stringify(error, null, 2)}`
+      );
+      state.checkout.error = error.message;
       state.amazon.login.fail = true;
     }
   });
+  // new OffAmazonPayments.Widgets.Wallet({
+  //   sellerId: 'YOUR_SELLER_ID_HERE',
+  //   onReady: function(billingAgreement) {
+  //     var billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+  //   },
+  //   agreementType: 'BillingAgreement',
+  //   design: {
+  //     designMode: 'responsive'
+  //   },
+  //   onPaymentSelect: function(billingAgreement) {
+  //     // Replace this code with the action that you want to perform
+  //     // after the payment method is selected.
+  //   },
+  //   onError: function(error) {
+  //     // your error handling code
+  //     state.checkout.error = error.message;
+  //   }
+  // }).bind('walletWidgetDiv');
   return null;
 };
 
@@ -78,4 +104,7 @@ exports.handleAmazonCheckout = function handleAmazonCheckout(state, emitter) {
     return;
   }
   document.body.classList.add('dialogIsOpen');
+  document.body.addEventListener('click', (e, ...args) => {
+    console.info(e, args);
+  });
 };

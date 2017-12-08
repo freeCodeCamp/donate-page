@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "freeCodeCamp",
   "scripts": {
-    "dev": "NODE_ENV=development node server & bankai build client/app.js public/ -w -V",
+    "dev": "NODE_ENV=development node server & bankai build client/app.js public/ -w -d -V",
     "build": "NODE_ENV=production bankai build client/app.js public/",
     "start": "NODE_ENV=production node server",
     "format-js": "prettier es5 --single-quote --write './**/*.js'",
@@ -16,7 +16,7 @@
   "main": "N/A",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "choo": "^6.0.0",
+    "choo": "^6.6.0",
     "choo-log": "^6.1.2",
     "dat-colors": "^3.5.1",
     "dotenv": "^4.0.0",
